@@ -1,7 +1,7 @@
 import GameScreen from './GameScreen';
 import Frame from '../Frame/Frame'
 import Pixel from '../Pixel';
-import FrameSource from './FrameSource';
+import FrameSource from '../FrameSource/FrameSource';
 
 class TestFrameSource extends FrameSource {
   getNextFrame(currentFrame) {
@@ -53,7 +53,6 @@ test('can refresh with a frame', async () => {
   gameScreen.turnOn()
   let currentFrame = gameScreen.getFrame().getFrameData()
   expect(currentFrame[0][0]).toStrictEqual(new Pixel(0,0,0,0));
-  const currentTime = new Date().getTime();
 
   setTimeout(() => {
     currentFrame = gameScreen.getFrame().getFrameData()

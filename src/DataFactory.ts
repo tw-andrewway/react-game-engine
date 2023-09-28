@@ -1,4 +1,4 @@
-import GameScreen from "./GameScreen";
+import GameScreen from "./GameScreen/GameScreen";
 
 class DataFactory {
   private screen: GameScreen;

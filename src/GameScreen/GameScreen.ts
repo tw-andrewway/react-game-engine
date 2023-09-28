@@ -1,6 +1,6 @@
 import Pixel from '../Pixel';
 import Frame from '../Frame/Frame';
-import FrameSource from './FrameSource'
+import FrameSource from '../FrameSource/FrameSource'
 
 // Responsible for swapping frames over time 
 class GameScreen {

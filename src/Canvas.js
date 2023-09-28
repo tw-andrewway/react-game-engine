@@ -1,7 +1,6 @@
 import { Component } from "react";
 import GameScreen from "./GameScreen.ts"
 import DataFactory from "./DataFactory.ts"
-import Pixel from "./Pixel.ts"
 
 // This should just be responsible for rendering the canvas in the DOM
 // TODO move creation of image to GameScreen
@@ -17,28 +16,9 @@ class Canvas extends Component {
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0)
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            
             const gameScreen = new GameScreen(img.width, img.height);
-            let s = 97;
-            let r = 218;
-            let g = 251;
-            let b = 255;
-            let coeff = -1;
-            const maxRefreshRate = 30;
-            const increment = 10;
-
-            const screenConfig = {
-                maxRefreshRate: 30,
-                minTimeBetweenRefresh: 1000/maxRefreshRate,
-            }
-
-
             setInterval(() => {
-                for(let i=0; i<img.width; i++) {
-                    for(let j=0; j<img.height; j++) {
-                        gameScreen.setPixel(i, j, new Pixel(s, r, g, b))
-                    }
-                }
+
     
                 const dataFactory = new DataFactory(gameScreen);
     
@@ -48,14 +28,7 @@ class Canvas extends Component {
                 }
     
                 ctx.putImageData(imageData, 0, 0);
-                b += coeff*increment;
-                g += coeff*increment;
 
-                if(b < 20 || g < 20) {
-                    coeff *= -1;
-                } else if(b > 255 || g > 255) {
-                    coeff *= -1;
-                }
 
 
             }, 1000/maxRefreshRate);
@@ -63,17 +36,6 @@ class Canvas extends Component {
 
         }
     }
-
-    refresh(timeSinceLastRefresh, screenConfig) {
-        let timeTillNextRefresh = screenConfig.minTimeBetweenRefresh - timeSinceLastRefresh;
-
-        setTimeout(() => {
-            if(isOn) {
-                this.refresh();
-            }
-        }, timeTillNextRefresh);
-    }
-
     render() {
         const { imageToShow, width, height } = this.props;
         return (

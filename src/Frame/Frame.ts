@@ -2,8 +2,12 @@ import Pixel from '../Pixel';
 
 class Frame {
     private frameData: Pixel[][];
+    private width: number;
+    private height: number;
 
     constructor(width: number, height: number) {
+        this.width = width;
+        this.height = height;
         this.frameData = new Array(width);
         for (let i = 0; i < width; i++) {
             this.frameData[i] = new Array(height);
@@ -22,6 +26,14 @@ class Frame {
 
     public setPixel(x: number, y: number, pixel: Pixel): void {
         this.frameData[x][y] = pixel;
+    }
+
+    public getWidth(): number {
+        return this.width;
+    }
+
+    public getHeight(): number {
+        return this.height;
     }
 }
 
