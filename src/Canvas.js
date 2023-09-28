@@ -3,9 +3,12 @@ import GameScreen from "./GameScreen.ts"
 import DataFactory from "./DataFactory.ts"
 import Pixel from "./Pixel.ts"
 
+// This should just be responsible for rendering the canvas in the DOM
+// TODO move creation of image to GameScreen
 class Canvas extends Component {
 
     componentDidMount() {
+        let isOn = true;
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d")
         const img = this.refs.image
@@ -21,8 +24,14 @@ class Canvas extends Component {
             let g = 251;
             let b = 255;
             let coeff = -1;
-            const refreshRate = 30;
+            const maxRefreshRate = 30;
             const increment = 10;
+
+            const screenConfig = {
+                maxRefreshRate: 30,
+                minTimeBetweenRefresh: 1000/maxRefreshRate,
+            }
+
 
             setInterval(() => {
                 for(let i=0; i<img.width; i++) {
@@ -49,10 +58,20 @@ class Canvas extends Component {
                 }
 
 
-            }, 1000/refreshRate);
+            }, 1000/maxRefreshRate);
 
 
         }
+    }
+
+    refresh(timeSinceLastRefresh, screenConfig) {
+        let timeTillNextRefresh = screenConfig.minTimeBetweenRefresh - timeSinceLastRefresh;
+
+        setTimeout(() => {
+            if(isOn) {
+                this.refresh();
+            }
+        }, timeTillNextRefresh);
     }
 
     render() {

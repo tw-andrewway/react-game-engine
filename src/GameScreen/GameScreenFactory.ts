@@ -1,4 +1,4 @@
-import Pixel from './Pixel';
+import Pixel from '../Pixel';
 import GameScreen from './GameScreen';
 
 class GameScreenFactory {
