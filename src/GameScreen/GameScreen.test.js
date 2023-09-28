@@ -54,8 +54,11 @@ test('can refresh with a frame', async () => {
   let currentFrame = gameScreen.getFrame().getFrameData()
   expect(currentFrame[0][0]).toStrictEqual(new Pixel(0,0,0,0));
   const currentTime = new Date().getTime();
+
   setTimeout(() => {
     currentFrame = gameScreen.getFrame().getFrameData()
     expect(currentFrame[0][0]).toStrictEqual(new Pixel(1,1,1,1));
   }, 1000)
+  jest.runOnlyPendingTimers();
+
 })
