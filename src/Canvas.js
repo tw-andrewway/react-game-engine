@@ -11,39 +11,36 @@ class Canvas extends Component {
         let isOn = true;
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d")
-        const img = this.refs.image
-        img.onload = () => {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0)
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const gameScreen = new GameScreen(
-                img.width, 
-                img.height, 
-                new BlinkFrameSource(img.height,img.width)
-            );
-            gameScreen.turnOn();
-            gameScreen.currentFrameSubject.subscribe(frame => {
-                let newFrameData = DataFactory(frame);
-                for(let i=0; i<imageData.data.length; i++) {
-                    imageData.data[i] = newFrameData[i]
-                }
-                ctx.putImageData(imageData, 0, 0);
-            })
-        }
+        let height = 200;
+        let width = 200;
+        canvas.width = width;
+        canvas.height = height;
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const gameScreen = new GameScreen(
+            width,
+            height,
+            new BlinkFrameSource(height, width)
+        );
+        gameScreen.turnOn();
+        gameScreen.currentFrameSubject.subscribe(frame => {
+            let newFrameData = DataFactory(frame);
+            for (let i = 0; i < imageData.data.length; i++) {
+                imageData.data[i] = newFrameData[i]
+            }
+            ctx.putImageData(imageData, 0, 0);
+        })
     }
     render() {
         const { imageToShow, width, height } = this.props;
         return (
             <>
-                <div>
-                    <h3>Original Image</h3>
-                    <img ref="image" src={imageToShow} width={width} height={height} />
-                </div>
-                <div className="canvas-container">
-                    <h3>Canvas Image</h3>
-                    <canvas ref="canvas" width={width} height={height} />
-                </div>
+                <div style={{'text-align': 'center'}}>
+                    <h3>Simple Demo</h3>
+                    <div style={{'text-align': 'center'}} >
+                        <canvas ref="canvas" width={width} height={height} />
+                    </div>
+                  </div>
             </>
         )
     }
