@@ -1,8 +1,10 @@
-import Frame from '../Frame/Frame';
-import FrameSource from '../FrameSource/FrameSource'
+import { BehaviorSubject } from 'rxjs';
+import Frame from '../Frame/Frame.ts';
+import FrameSource from '../FrameSource/FrameSource.ts'
 
 // Responsible for swapping frames over time 
 class GameScreen {
+    public currentFrameSubject: BehaviorSubject<Frame>;
     private currentFrame: Frame;
     private isOn: boolean = false;
     private width: number;
@@ -21,6 +23,7 @@ class GameScreen {
         this.height = height;
         this.currentFrame = new Frame(width, height);
         this.frameSource = frameSource;
+        this.currentFrameSubject = new BehaviorSubject<Frame>(this.currentFrame);
     }
 
     public turnOn(): void {
@@ -43,6 +46,7 @@ class GameScreen {
     private refresh(frame: Frame): void {
         if(!this.isOn) return;
         this.currentFrame = frame;
+        this.currentFrameSubject.next(this.currentFrame);
     }
 }
 

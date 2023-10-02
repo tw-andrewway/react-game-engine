@@ -61,3 +61,7 @@ test('can refresh with a frame', async () => {
   jest.runOnlyPendingTimers();
 
 })
+
+test('can emit frame', () => {
+  
+})

@@ -1,4 +1,4 @@
-import Pixel from '../Pixel';
+import Pixel from '../Pixel.ts';
 
 class Frame {
     private frameData: Pixel[][];

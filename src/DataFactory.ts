@@ -2,7 +2,7 @@ import Frame from './Frame/Frame'
 
 
   function createData(frame: Frame): Uint8ClampedArray {
-    const pixelSet = this.frame.getFrameData();
+    const pixelSet = frame.getFrameData();
     const width = pixelSet.length;
     const height = pixelSet[0].length;
     const data = new Uint8ClampedArray(width * height * 4);

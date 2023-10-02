@@ -1,6 +1,6 @@
-import FrameSource from "./FrameSource";
-import Frame from '../Frame/Frame'
-import Pixel from '../Pixel';
+import FrameSource from "./FrameSource.ts";
+import Frame from '../Frame/Frame.ts'
+import Pixel from '../Pixel.ts';
 
 class BlinkFrameSource extends FrameSource {
     currentFrame: Frame;
@@ -13,8 +13,10 @@ class BlinkFrameSource extends FrameSource {
     private increment = 10;
     private coeff = 1;
 
-    constructor(width, height) {
+    constructor(width: number, height: number) {
         super(0)
+        this.width = width;
+        this.height = height;
         this.currentFrame = new Frame(width, height);
     }
 
