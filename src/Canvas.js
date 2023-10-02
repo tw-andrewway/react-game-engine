@@ -1,6 +1,7 @@
 import { Component } from "react";
-import GameScreen from "./GameScreen.ts"
+import GameScreen from "./GameScreen/GameScreen"
 import DataFactory from "./DataFactory.ts"
+import BlinkFrameSource from "./FrameSource/BlinkFrameSource.js";
 
 // This should just be responsible for rendering the canvas in the DOM
 // TODO move creation of image to GameScreen
@@ -16,13 +17,13 @@ class Canvas extends Component {
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0)
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const gameScreen = new GameScreen(img.width, img.height);
+            const gameScreen = new GameScreen(img.width, img.height, new BlinkFrameSource());
+            
+            // Rx call back for updating the frame 
+            
             setInterval(() => {
-
     
-                const dataFactory = new DataFactory(gameScreen);
-    
-                const newData = dataFactory.createData();
+                const newData = DataFactory();
                 for(let i=0; i<imageData.data.length; i++) {
                     imageData.data[i] = newData[i]
                 }

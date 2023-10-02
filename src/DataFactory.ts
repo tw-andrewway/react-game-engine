@@ -1,14 +1,8 @@
-import GameScreen from "./GameScreen/GameScreen";
+import Frame from './Frame/Frame'
 
-class DataFactory {
-  private screen: GameScreen;
 
-  constructor(screen: GameScreen) {
-    this.screen = screen;
-  }
-
-  public createData(): Uint8ClampedArray {
-    const pixelSet = this.screen.getPixelSet();
+  function createData(frame: Frame): Uint8ClampedArray {
+    const pixelSet = this.frame.getFrameData();
     const width = pixelSet.length;
     const height = pixelSet[0].length;
     const data = new Uint8ClampedArray(width * height * 4);
@@ -22,8 +16,8 @@ class DataFactory {
         data[index++] = pixel.getBlue();
       }
     }
+
     return data;
   }
-}
 
-export default DataFactory;
+export default createData;

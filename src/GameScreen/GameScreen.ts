@@ -1,4 +1,3 @@
-import Pixel from '../Pixel';
 import Frame from '../Frame/Frame';
 import FrameSource from '../FrameSource/FrameSource'
 
