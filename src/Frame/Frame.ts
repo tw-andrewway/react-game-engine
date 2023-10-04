@@ -15,7 +15,7 @@ class Frame {
 
         for (let i = 0; i < width; i++) {
             for (let j = 0; j < height; j++){
-                this.frameData[i][j] = new Pixel(0, 0, 0, 0);
+                this.frameData[i][j] = new Pixel(97, 218, 0, 0);
             }
         }
     }

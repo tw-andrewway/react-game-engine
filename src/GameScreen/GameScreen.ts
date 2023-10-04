@@ -28,9 +28,9 @@ class GameScreen {
 
     public turnOn(): void {
         this.isOn = true;
-        this.refresh(this.frameSource.getNextFrame(this.currentFrame));
+        this.refresh(this.frameSource.getNextFrame());
         setInterval(() => {
-            this.refresh(this.frameSource.getNextFrame(this.currentFrame));
+            this.refresh(this.frameSource.getNextFrame());
         }, this.timeBetweenRefreshes);
     }
 
@@ -46,6 +46,7 @@ class GameScreen {
     private refresh(frame: Frame): void {
         if(!this.isOn) return;
         this.currentFrame = frame;
+        this.frameSource.drawObjects();
         this.currentFrameSubject.next(this.currentFrame);
     }
 }
