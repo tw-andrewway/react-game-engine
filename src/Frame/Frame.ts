@@ -15,7 +15,7 @@ class Frame {
 
         for (let i = 0; i < width; i++) {
             for (let j = 0; j < height; j++){
-                this.frameData[i][j] = new Pixel(97, 218, 0, 0);
+                this.frameData[i][j] = new Pixel(255, 69, 69, 69);
             }
         }
     }
@@ -34,6 +34,13 @@ class Frame {
 
     public getHeight(): number {
         return this.height;
+    }
+
+    public getCenter() : any {
+        return {
+            x: Math.floor(this.width/2),
+            y: Math.floor(this.height/2)
+        }
     }
 }
 

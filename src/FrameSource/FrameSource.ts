@@ -6,8 +6,12 @@ class FrameSource {
     frameCount : number;
     currentFrame: Frame
     protected objects: GameObject[];
+    private width : number;
+    private height : number;
 
     constructor(width: number, height: number) {
+        this.width = width;
+        this.height = height;
         this.frameCount = 0;
         this.objects = new Array<GameObject>();
         this.currentFrame = new Frame(width, height);
@@ -25,8 +29,10 @@ class FrameSource {
         return this.currentFrame;
     }
 
-    public drawObjects() {
+    public drawObjects(deltaT : number) {
+        this.currentFrame = new Frame(this.width, this.height)
         this.objects.forEach((object) => {
+            object.setInMotion(deltaT, this.width, this.height);
             const position = object.getPosition();
             const objectPixels = object.getFrame().getFrameData();
             const objectX = position.x

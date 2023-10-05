@@ -3,8 +3,8 @@ import Frame from "../Frame/Frame";
 import Pixel from "../Pixel";
 
 class Ball extends GameObject {
-    constructor(width: number, height: number) {
-        super(width, height)
+    constructor(width: number, height: number, mass: number) {
+        super(width, height, mass)
 
         this.frame = new Frame(this.getWidth(), this.getHeight());
 

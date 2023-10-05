@@ -12,15 +12,16 @@ class Canvas extends Component {
         let isOn = true;
         const canvas = this.refs.canvas
         const ctx = canvas.getContext("2d")
-        let height = 90;
-        let width = 90;
+        let height = 300;
+        let width = 400;
         canvas.width = width;
         canvas.height = height;
 
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         let frameSource = new FrameSource(height, width);
-        let ball = new Ball(2,2);
-        ball.setPosition(new Position(1,1))
+        let ball = new Ball(10,10);
+        ball.setVelocity(1,1)
+        ball.setPosition(new Position(100,100))
         frameSource.addObject(ball)
         const gameScreen = new GameScreen(
             width,

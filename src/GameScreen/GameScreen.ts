@@ -11,7 +11,7 @@ class GameScreen {
     private height: number;
 
     public lastRefreshTime : number = 0;
-    public frameRate = 30; // 30 frames per second
+    public frameRate = 600; // 30 frames per second
     public timeBetweenRefreshes : number = 1000/this.frameRate;
     public frameSource: FrameSource;
 
@@ -29,8 +29,13 @@ class GameScreen {
     public turnOn(): void {
         this.isOn = true;
         this.refresh(this.frameSource.getNextFrame());
+        let date = new Date();
+        let time = date.getTime();
         setInterval(() => {
             this.refresh(this.frameSource.getNextFrame());
+            let newTime = new Date().getTime();
+            console.log("Time " + (newTime - time));
+            time = newTime;
         }, this.timeBetweenRefreshes);
     }
 
@@ -45,8 +50,8 @@ class GameScreen {
 
     private refresh(frame: Frame): void {
         if(!this.isOn) return;
+        this.frameSource.drawObjects(this.timeBetweenRefreshes);
         this.currentFrame = frame;
-        this.frameSource.drawObjects();
         this.currentFrameSubject.next(this.currentFrame);
     }
 }
