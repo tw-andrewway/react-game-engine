@@ -11,7 +11,7 @@ class GameScreen {
     private height: number;
 
     public lastRefreshTime : number = 0;
-    public frameRate = 600; // 30 frames per second
+    public frameRate = 30; // 30 frames per second
     public timeBetweenRefreshes : number = 1000/this.frameRate;
     public frameSource: FrameSource;
 
@@ -50,7 +50,7 @@ class GameScreen {
 
     private refresh(frame: Frame): void {
         if(!this.isOn) return;
-        this.frameSource.drawObjects(this.timeBetweenRefreshes);
+        this.frameSource.drawObjects(1);
         this.currentFrame = frame;
         this.currentFrameSubject.next(this.currentFrame);
     }

@@ -19,8 +19,8 @@ class Canvas extends Component {
 
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         let frameSource = new FrameSource(height, width);
-        let ball = new Ball(10,10);
-        ball.setVelocity(1,1)
+        let ball = new Ball(10,10,1);
+        ball.setVelocity(3,3)
         ball.setPosition(new Position(100,100))
         frameSource.addObject(ball)
         const gameScreen = new GameScreen(

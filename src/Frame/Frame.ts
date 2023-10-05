@@ -25,7 +25,11 @@ class Frame {
     }
 
     public setPixel(x: number, y: number, pixel: Pixel): void {
-        this.frameData[x][y] = pixel;
+        if(x < this.width && y < this.height
+            && x >= 0 && y >= 0) {
+            this.frameData[x][y] = pixel;
+        }
+
     }
 
     public getWidth(): number {

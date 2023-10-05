@@ -22,13 +22,19 @@ class GameObject {
         this.position.x += Math.ceil(this.speedX*deltaT);
         this.position.y += Math.ceil(this.speedY*deltaT);
 
-        if(this.position.x < 0 || this.position.x > boundaryX) {
+        if(this.position.x < 0) {
             this.position.x = 0;
+            this.speedX = -this.speedX;
+        } else if(this.position.x > boundaryX) {
+            this.position.x = boundaryX;
             this.speedX = -this.speedX;
         }
 
-        if(this.position.y < 0 || this.position.y > boundaryY) {
+        if(this.position.y < 0) {
             this.position.y = 0;
+            this.speedY = -this.speedY;
+        } else if(this.position.y > boundaryY) {
+            this.position.y = boundaryY;
             this.speedY = -this.speedY;
         }
     }
