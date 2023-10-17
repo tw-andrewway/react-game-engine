@@ -4,6 +4,8 @@ This project was created with the assistance of Github Copilot as a teaching ass
 
 The application renders a bouncing ball in a box, with very simple collision physics. The longer term vision was to re-create Pong. 
 
+A write-up for my experience building this project and my views on Copilot can be found here: https://docs.google.com/document/d/1NI2mdT-WhREnOky6iPVN3Y4Yo3d7ltJB-3_s2DBUTxs/edit?usp=sharing
+
 ## Available Scripts
 
 In the project directory, you can run:
