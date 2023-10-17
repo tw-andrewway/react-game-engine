@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Bouncing Ball Simulation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with the assistance of Github Copilot as a teaching assistant for React and as a TDD pair partner. 
+
+The application renders a bouncing ball in a box, with very simple collision physics. The longer term vision was to re-create Pong. 
 
 ## Available Scripts
 
